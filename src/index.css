@@ -21,9 +21,16 @@ body {
 
 @layer components {
     .items.active {
-        @apply border-[--Orange] transition ease-in-out;
+        @apply border-[--Orange] transition ease-linear;
     }
     .items.active li {
         @apply text-[--Very-dark-blue];
+    }
+
+    .basket:hover ~ span, .baskets.active span{
+        @apply block transition-all ease-linear duration-200;
+    }
+    .baskets.active img{
+        @apply drop-shadow;
     }
 }
