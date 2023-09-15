@@ -8,7 +8,7 @@ import Home from "../Home"
 
 const Router = () => {
   let element = useRoutes([
-    { path: "/", element: <Home /> },
+    { path: "/ecommerce-product-page", element: <Home /> },
     { path: "collections", element: <Collections /> },
     { path: "men", element: <Men /> },
     { path: "women", element: <Women /> },
