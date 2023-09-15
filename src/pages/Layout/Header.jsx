@@ -1,17 +1,14 @@
 import { Link, NavLink } from "react-router-dom"
 import { avatar, cart, closeIcon, logo, menu } from "../../assets"
 import Cart from "../../components/Cart"
-import { Fragment, useRef, useState } from "react"
-import { Dialog, Transition } from "@headlessui/react"
+import { useRef} from "react"
 
 const Header = () => {
   const cardRef = useRef(null)
   const avatarRef = useRef(null)
   const basketRef = useRef(null)
   const showMenu = useRef(null)
-  const overlay = useRef(null) 
-
-  const [open, setOpen] = useState(true)
+  const overlay = useRef(null)
 
   const handleShowCard = () => {
     cardRef.current.classList.toggle("!block")
@@ -27,7 +24,6 @@ const Header = () => {
   const handleCloseMenu = () => {
     showMenu.current.classList.remove("!left-0")
     overlay.current.classList.remove("!opacity-100", "!visible")
-
   }
 
   const menuItems = [
@@ -40,9 +36,12 @@ const Header = () => {
 
   return (
     <>
-      <div ref={overlay} className="fixed top-0 bottom-0 left-0 right-0 w-full h-full bg-[--Grayish-blue-opacity] z-[250] opacity-0 invisible transition-all duration-700 ease-in"></div>
-      <header className="w-[90%] md:w-[80%] mx-auto flex items-center justify-between border-b">
-        <div className="flex items-center gap-[20px] md:gap-[50px] ">
+      <div
+        ref={overlay}
+        className="fixed top-0 bottom-0 left-0 right-0 w-full h-full bg-[--Grayish-blue-opacity] z-[250] opacity-0 invisible transition-all duration-700 ease-in"
+      ></div>
+      <header className=" md:w-[80%] mx-auto flex items-center justify-between border-b">
+        <div className="flex items-center gap-[20px] md:gap-[50px] ps-4">
           <div className="w-[20px] md:hidden" onClick={() => handleShowMenu()}>
             <img className="w-full h-full object-cover" src={menu} alt="" />
           </div>
@@ -65,7 +64,7 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-        <div className="relative flex items-center justify-between gap-[20px] md:gap-[30px]">
+        <div className="relative flex items-center justify-between gap-[20px] md:gap-[30px] pe-4 md:pe-0">
           <div
             onClick={handleShowCard}
             ref={basketRef}
@@ -91,7 +90,7 @@ const Header = () => {
 
           <div
             ref={cardRef}
-            className="hidden shadow-2xl absolute right-0 top-[50px] w-[350px] rounded-lg overflow-hidden"
+            className="hidden shadow-2xl absolute right-[12px] lg:right-0 top-[50px] w-[96vw] m-auto p-3 md:w-[350px] rounded-lg overflow-hidden"
           >
             <Cart />
           </div>
