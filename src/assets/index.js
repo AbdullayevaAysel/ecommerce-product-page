@@ -5,6 +5,8 @@ import avatar from "./images/image-avatar.png"
 import deleteIcon from "./images/icon-delete.svg"
 import menu from "./images/icon-menu.svg"
 import closeIcon from "./images/icon-close.svg"
+import minusIcon from "./images/icon-minus.svg"
+import plusIcon from "./images/icon-plus.svg"
 
 import productThumb1 from "./images/image-product-1-thumbnail.jpg"
 import productThumb2 from "./images/image-product-2-thumbnail.jpg"
@@ -27,6 +29,8 @@ export {
   deleteIcon,
   menu,
   closeIcon,
+  minusIcon,
+  plusIcon,
   product1,
   product2,
   product3,

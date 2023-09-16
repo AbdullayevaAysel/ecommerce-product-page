@@ -1,4 +1,7 @@
 import {
+  cart,
+  minusIcon,
+  plusIcon,
   product1,
   productThumb1,
   productThumb2,
@@ -67,9 +70,23 @@ const Home = () => {
             </p>
             <p className="flex items-center gap-[10px]">
               <b className="text-[25px]">$125.00</b>
-              <span className="text-[--Orange] bg-[--Orange-opacity] px-2 text-[14px] rounded-md font-semibold">50%</span>
+              <span className="text-[--Orange] bg-[--Orange-opacity] px-2 text-[14px] rounded-md font-semibold">
+                50%
+              </span>
             </p>
             <p className="text-[--Grayish-blue] line-through">$250.00</p>
+            <div className="flex pt-5 gap-[20px]">
+              <div className="bg-[--Light-grayish-blue] flex items-center justify-between rounded-lg">
+                <img className="py-2 px-4 cursor-pointer" src={minusIcon} alt="" />
+                <span className="py-2 px-4 font-bold">0</span>
+                <img className="py-2 px-4 cursor-pointer" src={plusIcon} alt="" />
+              </div>
+
+              <button className="flex gap-[10px] justify-center items-center bg-[--Orange] text-white py-2 px-4 rounded-lg">
+                <img style={{filter: "brightness(0) invert(1)"}} className="w-[14px]" src={cart} alt="" />
+                <span className="text-[14px]">Add to cart</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
