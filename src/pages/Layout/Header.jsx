@@ -2,8 +2,11 @@ import { Link, NavLink } from "react-router-dom"
 import { avatar, cart, closeIcon, logo, menu } from "../../assets"
 import Cart from "../../components/Cart"
 import { useRef} from "react"
+import { useSelector } from "react-redux"
 
 const Header = () => {
+  const data = useSelector((state) => state.products.basket)
+
   const cardRef = useRef(null)
   const avatarRef = useRef(null)
   const basketRef = useRef(null)
@@ -76,7 +79,7 @@ const Header = () => {
               alt=""
             />
             <span className="absolute top-[-10px] right-[-10px] bg-[--Orange] text-[--White] px-2 rounded-full text-[12px]">
-              3
+              {data?.length}
             </span>
           </div>
 

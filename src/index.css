@@ -5,6 +5,7 @@
 
 :root {
   --Orange: hsl(26, 100%, 55%);
+  --Orange-shadow: hsla(26, 100%, 55%, 50%);
   --Orange-opacity: hsla(26, 100%, 81%, 0.4);
   --Pale-orange: hsl(25, 100%, 94%);
 

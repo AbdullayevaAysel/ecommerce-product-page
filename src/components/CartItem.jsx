@@ -1,26 +1,45 @@
-import { deleteIcon, productThumb1 } from "../assets"
+import { deleteIcon } from "../assets"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteProducts } from "../features/products/productSlice"
 
 const CartItem = () => {
+  const data = useSelector((state) => state.products.basket)
+  const dispatch = useDispatch()
+
   return (
     <>
-      <div className="flex items-center justify-between mb-5">
-        <div className="w-[50px] rounded-md overflow-hidden">
-          <img
-            className="w-full h-full object-cover"
-            src={productThumb1}
-            alt=""
-          />
-        </div>
-        <div className="text-[--Dark-grayish-blue]">
-          <p>Fall Limited Edition Sneakers</p>
-          <p>
-            $125.00 x 3 <b className="text-[--Black]">$375.00</b>
-          </p>
-        </div>
-        <div className="w-[15px]">
-          <img className="w-full h-full object-cover" src={deleteIcon} alt="" />
-        </div>
-      </div>
+      {data &&
+        data?.map((item) => (
+          <div
+            key={item?.id}
+            className="flex items-center justify-between mb-5"
+          >
+            <div className="w-[50px] rounded-md overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={item.thumb1}
+                alt=""
+              />
+            </div>
+            <div className="text-[--Dark-grayish-blue]">
+              <p>{item?.title}</p>
+              <p>
+                ${item?.price} x {item?.count}{" "}
+                <b className="text-[--Black]">
+                  ${(item?.price * item?.count).toFixed(2)}
+                </b>
+              </p>
+            </div>
+            <div className="w-[15px]">
+              <img
+                onClick={() => dispatch(deleteProducts(item))}
+                className="w-full h-full object-cover cursor-pointer"
+                src={deleteIcon}
+                alt=""
+              />
+            </div>
+          </div>
+        ))}
     </>
   )
 }

@@ -17,9 +17,15 @@ export const productSlice = createSlice({
       } else {
         state.basket.push(action.payload)
       }
-    }
+    },
+    deleteProducts: (state, action) => {
+      let newBasket = state.basket.filter(
+        (product) => product.id !== action.payload.id
+      )
+      state.basket = newBasket
+    },
   },
 })
 
-export const { addToProducts } = productSlice.actions
+export const { addToProducts, deleteProducts } = productSlice.actions
 export default productSlice.reducer
