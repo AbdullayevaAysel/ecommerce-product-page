@@ -1,6 +1,7 @@
 import { deleteIcon } from "../assets"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteProducts } from "../features/products/productSlice"
+import { useState } from "react"
 
 const CartItem = () => {
   const data = useSelector((state) => state.products.basket)
@@ -24,9 +25,9 @@ const CartItem = () => {
             <div className="text-[--Dark-grayish-blue]">
               <p>{item?.title}</p>
               <p>
-                ${item?.price} x {item?.count}{" "}
-                <b className="text-[--Black]">
-                  ${(item?.price * item?.count).toFixed(2)}
+                ${item?.price} x {item?.oldCount}
+                <b className="text-[--Black] ps-2">
+                  ${(item?.price * item?.oldCount).toFixed(2)}
                 </b>
               </p>
             </div>

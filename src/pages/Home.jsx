@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import {
   cart,
   minusIcon,
@@ -12,11 +12,11 @@ import {
   productThumb3,
   productThumb4,
 } from "../assets"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { addToProducts } from "../features/products/productSlice"
 
 const Home = () => {
-  const [updateImg, setupdateImg] = useState('')
+  const [updateImg, setupdateImg] = useState("")
   const [count, setCount] = useState(0)
 
   const products = [
@@ -38,20 +38,15 @@ const Home = () => {
       thumb3: productThumb3,
       thumb4: productThumb4,
       count: count,
+      oldCount: count,
     },
   ]
 
-  const data = useSelector((state) => state.products.basket)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(data))
-    console.log(JSON.parse(localStorage.getItem("products")))
-  }, [data, dispatch])
 
   return (
     <>
-      <div >
+      <div>
         {products &&
           products?.map((product) => (
             <div key={product.id} className="w-[80%] mx-auto mt-20 flex">
@@ -60,7 +55,11 @@ const Home = () => {
                   <div className=" h-[450px] rounded-2xl overflow-hidden">
                     <img
                       className="w-full h-full object-cover"
-                      src={(updateImg.length > 0) && updateImg ? updateImg : product.img1}
+                      src={
+                        updateImg.length > 0 && updateImg
+                          ? updateImg
+                          : product.img1
+                      }
                       alt=""
                     />
                   </div>
@@ -91,7 +90,7 @@ const Home = () => {
                     </div>
                     <div className="py-[30px]">
                       <img
-                      onClick={() => setupdateImg(product.img4)}
+                        onClick={() => setupdateImg(product.img4)}
                         className="w-full h-full object-cover rounded-2xl cursor-pointer"
                         src={product.thumb4}
                         alt=""
