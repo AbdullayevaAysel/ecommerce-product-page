@@ -8,6 +8,9 @@ import closeIcon from "./images/icon-close.svg"
 import minusIcon from "./images/icon-minus.svg"
 import plusIcon from "./images/icon-plus.svg"
 
+import next from "./images/icon-next.svg"
+import previous from "./images/icon-previous.svg"
+
 import productThumb1 from "./images/image-product-1-thumbnail.jpg"
 import productThumb2 from "./images/image-product-2-thumbnail.jpg"
 import productThumb3 from "./images/image-product-3-thumbnail.jpg"
@@ -19,6 +22,8 @@ import product3 from "./images/image-product-3.jpg"
 import product4 from "./images/image-product-4.jpg"
 
 export {
+  next,
+  previous,
   logo,
   cart,
   avatar,

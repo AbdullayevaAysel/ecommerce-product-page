@@ -42,10 +42,6 @@ body {
   border: 3px solid var(--scrollbarBG);
 }
 
-.active-swiper {
-  border: 3px solid var(--Orange);
-}
-
 @layer components {
   .items.active {
     @apply border-[--Orange] transition ease-linear;
@@ -63,6 +59,46 @@ body {
   }
 
   .status-active {
-    @apply after:content-[''] after:absolute after:w-[40px] after:h-[40px] md:after:w-[56px] md:after:h-[56px] after:border-[--Orange] after:border-dashed after:animate-spin after:border-[20px] after:top-[-3px] after:rounded-full after:left-[-3px] after:right-[-3px] after:bottom-[-3px] after:transition-all after:duration-1000 after:ease-in-out after:z-10;
+    @apply after:content-[''] after:absolute  md:after:w-[56px] md:after:h-[56px] after:border-[--Orange] after:border-dashed after:animate-spin after:border-[20px] after:top-[-3px] after:rounded-full after:left-[-3px] after:right-[-3px] after:bottom-[-3px] after:transition-all after:duration-1000 after:ease-in-out after:z-10;
   }
 }
+
+.slider-img{
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.slider-img::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  cursor: pointer;
+  transition: all 500s ease-in-out;
+}
+
+.slider-img:hover::after, .active.slider-img::after{
+  display: block;
+}
+
+.active.slider-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  border: 3px solid var(--Orange);
+  z-index: 100;
+  cursor: pointer;
+}
+

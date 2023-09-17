@@ -43,8 +43,9 @@ const Header = () => {
         ref={overlay}
         className="fixed top-0 bottom-0 left-0 right-0 w-full h-full bg-[--Grayish-blue-opacity] z-[250] opacity-0 invisible transition-all duration-700 ease-in"
       ></div>
-      <header className=" md:w-[80%] mx-auto flex items-center justify-between border-b">
+      <header className="md:w-[80%] mx-auto flex items-center justify-between border-b">
         <div className="flex items-center gap-[20px] md:gap-[50px] ps-4">
+          
           <div className="w-[20px] md:hidden" onClick={() => handleShowMenu()}>
             <img className="w-full h-full object-cover" src={menu} alt="" />
           </div>
@@ -93,7 +94,7 @@ const Header = () => {
 
           <div
             ref={cardRef}
-            className="hidden shadow-2xl absolute right-[12px] lg:right-0 top-[50px] w-[96vw] m-auto p-3 md:w-[350px] rounded-lg overflow-hidden"
+            className="hidden bg-[--White] z-10 shadow-2xl absolute right-[12px] lg:right-0 top-[60px] md:top-[50px] w-[94vw] m-auto md:w-[350px] rounded-lg overflow-hidden"
           >
             <Cart />
           </div>

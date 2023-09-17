@@ -1,7 +1,6 @@
 import { deleteIcon } from "../assets"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteProducts } from "../features/products/productSlice"
-import { useState } from "react"
 
 const CartItem = () => {
   const data = useSelector((state) => state.products.basket)
