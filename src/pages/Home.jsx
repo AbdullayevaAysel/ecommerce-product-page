@@ -65,7 +65,7 @@ const Home = () => {
             >
               <div className="w-full lg:w-[50%] h-full">
                 <div className="w-full lg:w-[80%] m-auto relative">
-                  <div className="bg-[--White] w-[40px] h-[40px] absolute top-[50%] left-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer">
+                  <div className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] left-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}>
                     <img className="w-[10px]" src={previous} alt="" />
                   </div>
                   <div
@@ -82,7 +82,7 @@ const Home = () => {
                       alt=""
                     />
                   </div>
-                  <div className="bg-[--White] w-[40px] h-[40px] absolute top-[50%] right-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer">
+                  <div className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] right-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}>
                     <img className="w-[10px]" src={next} alt="" />
                   </div>
                   <div className="hidden lg:grid grid-cols-4 gap-[30px]">
