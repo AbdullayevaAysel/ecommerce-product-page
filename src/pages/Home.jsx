@@ -23,6 +23,7 @@ const Home = () => {
   const [active, setActive] = useState(1)
   const [count, setCount] = useState(0)
   const [open, setOpen] = useState(false)
+  const [limit, setLimit] = useState(1)
 
   const products = [
     {
@@ -34,14 +35,28 @@ const Home = () => {
       price: "125.00",
       oldprice: "250.00",
       percent: "50%",
-      img1: product1,
-      img2: product2,
-      img3: product3,
-      img4: product4,
-      thumb1: productThumb1,
-      thumb2: productThumb2,
-      thumb3: productThumb3,
-      thumb4: productThumb4,
+      images: [
+        {
+          id: 1,
+          img: product1,
+          thumb: productThumb1,
+        },
+        {
+          id: 2,
+          img: product2,
+          thumb: productThumb2,
+        },
+        {
+          id: 3,
+          img: product3,
+          thumb: productThumb3,
+        },
+        {
+          id: 4,
+          img: product4,
+          thumb: productThumb4,
+        },
+      ],
       count: count,
       oldCount: count,
     },
@@ -54,6 +69,18 @@ const Home = () => {
 
   const dispatch = useDispatch()
 
+  const handleNext = (length) => {
+    if (length != limit) {
+      length > limit && setLimit(limit + 1)
+    } else {
+      setLimit(1)
+    }
+  }
+
+  const handlePrevios = (length) => {
+    limit > 1 ? setLimit(limit - 1) : setLimit(length)
+  }
+
   return (
     <>
       <div>
@@ -65,75 +92,53 @@ const Home = () => {
             >
               <div className="w-full lg:w-[50%] h-full">
                 <div className="w-full lg:w-[80%] m-auto relative">
-                  <div className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] left-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}>
+                  <div
+                    onClick={() => handlePrevios(product?.images?.length)}
+                    className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] left-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}
+                  >
                     <img className="w-[10px]" src={previous} alt="" />
                   </div>
+                  {product?.images?.slice(limit - 1, limit)?.map((img) => (
+                    <div
+                      key={img?.id}
+                      className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-pointer"
+                      onClick={() => setOpen(true)}
+                    >
+                      <img
+                        className="w-full h-full object-cover"
+                        src={
+                          updateImg?.length > 0 && updateImg
+                            ? updateImg
+                            : img?.img
+                        }
+                        alt=""
+                      />
+                    </div>
+                  ))}
+
                   <div
-                    className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-pointer"
-                    onClick={() => setOpen(true)}
+                    onClick={() => handleNext(product?.images?.length)}
+                    className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] right-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}
                   >
-                    <img
-                      className="w-full h-full object-cover"
-                      src={
-                        updateImg?.length > 0 && updateImg
-                          ? updateImg
-                          : product.img1
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <div className={`bg-[--White] w-[40px] h-[40px] absolute top-[50%] right-[5%] translate-y-[-50%] rounded-full flex lg:hidden items-center justify-center cursor-pointer`}>
                     <img className="w-[10px]" src={next} alt="" />
                   </div>
                   <div className="hidden lg:grid grid-cols-4 gap-[30px]">
-                    <div className="py-[30px]">
-                      <div
-                        className={`slider-img ${active == 1 ? "active" : ""}`}
-                        onClick={() => handleUpdateImg(product.img1, 1)}
-                      >
-                        <img
-                          className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                          src={product.thumb1}
-                          alt=""
-                        />
+                    {product?.images?.map((img) => (
+                      <div key={img?.id} className="py-[30px]">
+                        <div
+                          className={`slider-img ${
+                            active == img?.id ? "active" : ""
+                          }`}
+                          onClick={() => handleUpdateImg(img?.img, img?.id)}
+                        >
+                          <img
+                            className="w-full h-full object-cover rounded-2xl cursor-pointer"
+                            src={img?.thumb}
+                            alt=""
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="py-[30px]">
-                      <div
-                        className={`slider-img ${active == 2 ? "active" : ""}`}
-                        onClick={() => handleUpdateImg(product.img2, 2)}
-                      >
-                        <img
-                          className="w-full h-full object-cover rounded-2xl cursor-pointer slider-img"
-                          src={product.thumb2}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="py-[30px]">
-                      <div
-                        className={`slider-img ${active == 3 ? "active" : ""}`}
-                        onClick={() => handleUpdateImg(product.img3, 3)}
-                      >
-                        <img
-                          className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                          src={product.thumb3}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="py-[30px]">
-                      <div
-                        className={`slider-img ${active == 4 ? "active" : ""}`}
-                        onClick={() => handleUpdateImg(product.img4, 4)}
-                      >
-                        <img
-                          className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                          src={product.thumb4}
-                          alt=""
-                        />
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -210,80 +215,52 @@ const Home = () => {
                       <img className="w-[15px]" src={closeIcon} alt="" />
                     </div>
 
-                    <div className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] left-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer">
+                    <div
+                      onClick={() => handlePrevios(product?.images?.length)}
+                      className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] left-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
+                    >
                       <img className="" src={previous} alt="" />
                     </div>
-                    <div className=" h-[450px] rounded-2xl overflow-hidden">
-                      <img
-                        className="w-full h-full object-cover"
-                        src={
-                          updateImg?.length > 0 && updateImg
-                            ? updateImg
-                            : product.img1
-                        }
-                        alt=""
-                      />
-                    </div>
+                    {product?.images?.slice(limit - 1, limit)?.map((img) => (
+                      <div
+                        key={img?.id}
+                        className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-pointer"
+                        onClick={() => setOpen(true)}
+                      >
+                        <img
+                          className="w-full h-full object-cover"
+                          src={
+                            updateImg?.length > 0 && updateImg
+                              ? updateImg
+                              : img?.img
+                          }
+                          alt=""
+                        />
+                      </div>
+                    ))}
                     <div className="grid grid-cols-4 gap-[30px]">
-                      <div className="py-[30px]">
-                        <div
-                          className={`slider-img ${
-                            active == 1 ? "active" : ""
-                          }`}
-                          onClick={() => handleUpdateImg(product.img1, 1)}
-                        >
-                          <img
-                            className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                            src={product.thumb1}
-                            alt=""
-                          />
+                      {product?.images?.map((img) => (
+                        <div key={img?.id} className="py-[30px]">
+                          <div
+                            className={`slider-img ${
+                              active == img?.id ? "active" : ""
+                            }`}
+                            onClick={() => handleUpdateImg(img?.img, img?.id)}
+                          >
+                            <img
+                              className="w-full h-full object-cover rounded-2xl cursor-pointer"
+                              src={img.thumb}
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="py-[30px]">
-                        <div
-                          className={`slider-img ${
-                            active == 2 ? "active" : ""
-                          }`}
-                          onClick={() => handleUpdateImg(product.img2, 2)}
-                        >
-                          <img
-                            className="w-full h-full object-cover rounded-2xl cursor-pointer slider-img"
-                            src={product.thumb2}
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div className="py-[30px]">
-                        <div
-                          className={`slider-img ${
-                            active == 3 ? "active" : ""
-                          }`}
-                          onClick={() => handleUpdateImg(product.img3, 3)}
-                        >
-                          <img
-                            className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                            src={product.thumb3}
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div className="py-[30px]">
-                        <div
-                          className={`slider-img ${
-                            active == 4 ? "active" : ""
-                          }`}
-                          onClick={() => handleUpdateImg(product.img4, 4)}
-                        >
-                          <img
-                            className="w-full h-full object-cover rounded-2xl cursor-pointer"
-                            src={product.thumb4}
-                            alt=""
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
 
-                    <div className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] right-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer">
+                    <div
+                      onClick={() => handleNext(product?.images?.length)}
+                      className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] right-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
+                    >
                       <img src={next} alt="" />
                     </div>
                   </div>
