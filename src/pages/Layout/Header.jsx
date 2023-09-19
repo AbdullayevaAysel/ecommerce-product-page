@@ -49,7 +49,7 @@ const Header = () => {
           <div className="w-[20px] md:hidden" onClick={() => handleShowMenu()}>
             <img className="w-full h-full object-cover" src={menu} alt="" />
           </div>
-          <Link to={"/"} className="py-[20px] md:py-[30px]">
+          <Link to={"/ecommerce-product-page"} className="py-[20px] md:py-[30px]">
             <img src={logo} alt="logo" />
           </Link>
           <nav>

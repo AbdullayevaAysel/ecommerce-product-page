@@ -62,9 +62,9 @@ const Home = () => {
     },
   ]
 
-  const handleUpdateImg = (img, index) => {
+  const handleUpdateImg = (img, id) => {
     setupdateImg(img)
-    setActive(index)
+    setActive(id)
   }
 
   const dispatch = useDispatch()
@@ -79,6 +79,13 @@ const Home = () => {
 
   const handlePrevios = (length) => {
     limit > 1 ? setLimit(limit - 1) : setLimit(length)
+  }
+
+  const handleAddProducts = (product) => {
+    if (0 < count) {
+      dispatch(addToProducts(product))
+      setCount(0)
+    }
   }
 
   return (
@@ -181,9 +188,7 @@ const Home = () => {
                     </div>
 
                     <button
-                      onClick={() =>
-                        0 < count && dispatch(addToProducts(product))
-                      }
+                      onClick={() => handleAddProducts(product)}
                       disabled={count <= 0}
                       className={`shadow-lg shadow-[--Orange-shadow] md:w-[60%] flex gap-[10px] justify-center items-center bg-[--Orange] text-white py-3 px-4 rounded-lg disabled:opacity-75 ${
                         count <= 0 && "cursor-not-allowed"

@@ -14,13 +14,18 @@ const CartItem = () => {
             key={item?.id}
             className="flex items-center justify-between mb-5"
           >
-            <div className="w-[50px] rounded-md overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                src={item.thumb1}
-                alt=""
-              />
-            </div>
+            {item?.images?.slice(0, 1)?.map((img) => (
+              <div
+                key={img?.id}
+                className="w-[50px] rounded-md overflow-hidden"
+              >
+                <img
+                  className="w-full h-full object-cover"
+                  src={img?.thumb}
+                  alt=""
+                />
+              </div>
+            ))}
             <div className="text-[--Dark-grayish-blue]">
               <p>{item?.title}</p>
               <p>
