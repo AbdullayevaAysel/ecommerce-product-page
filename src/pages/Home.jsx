@@ -108,7 +108,7 @@ const Home = () => {
                   {product?.images?.slice(limit - 1, limit)?.map((img) => (
                     <div
                       key={img?.id}
-                      className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-pointer"
+                      className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-zoom-in"
                       onClick={() => setOpen(true)}
                     >
                       <img
