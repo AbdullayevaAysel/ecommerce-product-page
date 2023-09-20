@@ -208,28 +208,28 @@ const Home = () => {
 
               <div
                 className={`${
-                  open ? "lg:fixed" : "hidden"
+                  open ? "fixed" : "hidden"
                 } bg-[rgba(0,0,0,0.7)] h-screen w-full left-0 top-0 z-[10000] flex items-center justify-center`}
               >
-                <div className="w-[50%]">
-                  <div className="w-[500px] m-auto relative">
+                <div className="w-[90%] lg:w-[50%]">
+                  <div className="lg:w-[500px] m-auto relative">
                     <div
                       onClick={() => setOpen(false)}
-                      className=" absolute top-[-5%] right-0 cursor-pointer sepia"
+                      className=" absolute top-[-10%] lg:top-[-5%] right-0 cursor-pointer sepia"
                     >
                       <img className="w-[15px]" src={closeIcon} alt="" />
                     </div>
 
                     <div
                       onClick={() => handlePrevios(product?.images?.length)}
-                      className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] left-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
+                      className="bg-[--White] w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] absolute top-[50%] lg:top-[40%] left-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
                     >
-                      <img className="" src={previous} alt="" />
+                      <img className="w-[10px]" src={previous} alt="" />
                     </div>
                     {product?.images?.slice(limit - 1, limit)?.map((img) => (
                       <div
                         key={img?.id}
-                        className="w-full h-[300px] lg:h-[450px] lg:rounded-2xl overflow-hidden cursor-pointer"
+                        className="w-full h-[300px] lg:h-[450px] rounded-lg lg:rounded-2xl overflow-hidden cursor-pointer mt-3"
                         onClick={() => setOpen(true)}
                       >
                         <img
@@ -243,7 +243,7 @@ const Home = () => {
                         />
                       </div>
                     ))}
-                    <div className="grid grid-cols-4 gap-[30px]">
+                    <div className="hidden lg:grid grid-cols-4 gap-[30px]">
                       {product?.images?.map((img) => (
                         <div key={img?.id} className="py-[30px]">
                           <div
@@ -264,9 +264,9 @@ const Home = () => {
 
                     <div
                       onClick={() => handleNext(product?.images?.length)}
-                      className="bg-[--White] w-[50px] h-[50px] absolute top-[40%] right-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
+                      className="bg-[--White] w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] absolute top-[50%] lg:top-[40%] right-[-5%] translate-y-[-50%] rounded-full flex items-center justify-center cursor-pointer"
                     >
-                      <img src={next} alt="" />
+                      <img className="w-[10px]" src={next} alt="" />
                     </div>
                   </div>
                 </div>
