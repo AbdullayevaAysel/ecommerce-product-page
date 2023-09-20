@@ -209,7 +209,7 @@ const Home = () => {
               <div
                 className={`${
                   open ? "fixed" : "hidden"
-                } bg-[rgba(0,0,0,0.7)] h-screen w-full left-0 top-0 z-[10000] flex items-center justify-center`}
+                } bg-[rgba(0,0,0,0.7)] h-screen w-full left-0 top-0 z-[10000] flex lg:items-center justify-center lg:pt-0 pt-[5rem]`}
               >
                 <div className="w-[90%] lg:w-[50%]">
                   <div className="lg:w-[500px] m-auto relative">
